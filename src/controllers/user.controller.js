@@ -66,6 +66,12 @@ const registerUser = asyncHandler( async (req, res) => {
     )
 });
 
-
+const loginUser = asyncHandler(async (req, res) => {
+    // STEP 1 - Get data from request body
+    // STEP 2 - Give access via email or username
+    // STEP 3 - Find the user
+    // STEP 4 - Password check
+    // STEP 5 - Access and Refresh token generation
+})
 
 export { registerUser };
