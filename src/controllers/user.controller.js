@@ -148,7 +148,7 @@ const logoutUser = asyncHandler(async (req, res) => {
         { new: true }
     )
 
-    // STEP 2 — clear both cookies
+    r
     const cookieOptions = {
         httpOnly: true,
         secure: true
@@ -163,7 +163,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 });
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
-    // STEP 1 — Get the incoming refresh token from cookie or body
+    e 
     const incomingRefreshToken = req.cookies?.refreshToken || req.body.refreshToken;
 
     if(!incomingRefreshToken) {
@@ -171,7 +171,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
     // STEP 2 — Verify the token is valid
-    const decodeToken = jwt.verify( incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET );
+    const decodeToken = jwt.verify( incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
 
     // STEP 3 — Find the user from the decoded token
     const user = await user.findById(decodeToken?._id);
@@ -185,8 +185,8 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         throw new ApiError(401, "Refresh token is used or expired");
     }
 
-    // STEP 5 — Issue new token pair
-    const { accessToken, newRefreshToken } = await generateTokens(user._id);
+    // STEP 5 — Issue new token paira
+    const { accessToken, refreshToken: newRefreshToken } = await generateTokens(user._id);
 
     // STEP 6 — Set new cookies and return
     const cookieOptions = {
@@ -205,7 +205,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
             "Access token refreshed successfully"
         )
     )
-})
+});
 
 export {
     registerUser,
